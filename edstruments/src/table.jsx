@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './table.css'
   
 function StudentForm(props) {
   const [name, setName] = useState('');
