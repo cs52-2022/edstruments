@@ -1,65 +1,154 @@
 import React, { useState } from 'react';
-import StudentForm from './form';
-import jsonData from './data.json';
+import './table.css'
   
-function TableData() {
-  const [studentData, setStudentData] = useState(jsonData);
+function StudentForm(props) {
+  const [name, setName] = useState('');
+  const [status, setStatus] = useState('');
+  const [condition, setCondition] = useState('');
+  const [location, setLocation] = useState('');
+  const [owner, setOwner] = useState('');
+  const [user, setUser] = useState('');
+  const [checkoutdate, setCheckoutDate] = useState('');
+  const [returnbydate, setReturnByDate] = useState('');
+  const [purchasedate, setPurchaseDate] = useState('');
+  const [cost, setCost] = useState('');
+  const [currentvalue, setCurrentValue] = useState('');
+  const [schedule, setSchedule] = useState('');
+  const [comments, setComments] = useState('');
   
-  const tableRows = studentData.map((info) => {
-    return (
-      <tr>
-        <td>{info.id}</td>
-        <td>{info.name}</td>
-        <td>{info.status}</td>
-        <td>{info.condition}</td>
-        <td>{info.location}</td>
-        <td>{info.owner}</td>
-        <td>{info.user}</td>
-        <td>{info.checkoutdate}</td>
-        <td>{info.returnbydate}</td>
-        <td>{info.purchasedate}</td>
-        <td>{info.cost}</td>
-        <td>{info.currentvalue}</td>
-        <td>{info.schedule}</td>
-        <td>{info.comments}</td>
-      </tr>
-    );
-  });
+  const changeName = (event) => {
+    setName(event.target.value);
+  };
   
-  const addRows = (data) => {
-    const totalStudents = studentData.length;
-    data.id = totalStudents + 1;
-    const updatedStudentData = [...studentData];
-    updatedStudentData.push(data);
-    setStudentData(updatedStudentData);
+  const changeStatus = (event) => {
+    setStatus(event.target.value);
+  };
+
+  const changeCondition = (event) => {
+    setCondition(event.target.value);
+  };
+
+  const changeLocation = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const changeOwner = (event) => {
+    setOwner(event.target.value);
+  };
+  
+  const changeUser = (event) => {
+    setUser(event.target.value);
+  };
+  
+  const changeCheckoutDate = (event) => {
+    setCheckoutDate(event.target.value);
+  };
+  
+  const changeReturnByDate = (event) => {
+    setReturnByDate(event.target.value);
+  };
+  
+  const changePurchaseDate = (event) => {
+    setPurchaseDate(event.target.value);
+  };
+  
+  const changeCost = (event) => {
+    setCost(event.target.value);
+  };
+  
+  const changeCurrentValue = (event) => {
+    setCurrentValue(event.target.value);
+  };
+  
+  const changeSchedule = (event) => {
+    setSchedule(event.target.value);
+  };
+  
+  const changeComments = (event) => {
+    setComments(event.target.value);
+  };
+  
+  const transferValue = (event) => {
+    event.preventDefault();
+    const val = {
+      name,
+      status,
+      condition,
+      location,
+      owner,
+      user,
+      checkoutdate,
+      returnbydate,
+      purchasedate,
+      cost,
+      currentvalue,
+      schedule,
+      comments,
+    };
+    props.func(val);
+    clearState();
+  };
+  
+  const clearState = () => {
+    setName('');
+    setStatus('');
+    setCondition('');
+    setLocation('');
+    setOwner('');
+    setUser('');
+    setCheckoutDate('');
+    setReturnByDate('');
+    setPurchaseDate('');
+    setCost('');
+    setCurrentValue('');
+    setSchedule('');
+    setComments('');
   };
   
   return (
     <div>
-      <table className="table table-stripped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Condition</th>
-            <th>Location</th>
-            <th>Owner</th>
-            <th>User</th>
-            <th>Checkout Date</th>
-            <th>Return-By Date</th>
-            <th>Purchase Date</th>
-            <th>Cost</th>
-            <th>Current Value</th>
-            <th>Maintenance Schedule</th>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
-      <StudentForm func={addRows} />
+      <label>Name</label>
+      <input type="text" value={name} onChange={changeName} />
+
+      <label>Status</label>
+      <input type="text" value={status} onChange={changeStatus} />
+
+      <label>Condition</label>
+      <input type="text" value={condition} onChange={changeCondition} />
+
+      <label>Location</label>
+      <input type="text" value={location} onChange={changeLocation} />
+
+      <label>Owner</label>
+      <input type="text" value={owner} onChange={changeOwner} />
+
+      <label>User</label>
+      <input type="text" value={user} onChange={changeUser} />
+
+      <label>Checkout Date</label>
+      <input type="text" value={checkoutdate} onChange={changeCheckoutDate} />
+
+      <label>Return-By Date</label>
+      <input type="text" value={returnbydate} onChange={changeReturnByDate} />
+
+      <label>Purchase Date</label>
+      <input type="text" value={purchasedate} onChange={changePurchaseDate} />
+
+      <label>Cost</label>
+      <input type="text" value={cost} onChange={changeCost} />
+
+      <label>Current Value</label>
+      <input type="text" value={currentvalue} onChange={changeCurrentValue} />
+
+      <label>Schedule</label>
+      <input type="text" value={schedule} onChange={changeSchedule} />
+
+      <label>Comments</label>
+      <input type="text" value={comments} onChange={changeComments} />
+
+      <button onClick={transferValue}> Log Item</button>
     </div>
   );
 }
   
-export default TableData;
+export default StudentForm;
