@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import StudentForm from './form';
 import jsonData from './data.json';
-import './table.css'
+import './table.css';
   
 function TableData() {
   const [studentData, setStudentData] = useState(jsonData);

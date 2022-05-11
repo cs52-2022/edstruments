@@ -1,108 +1,31 @@
 import './App.css';
 import TableData from './table';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 function App() {
   return (
     <div className="App">
-      <div class="mdc-tab-bar" role="tablist">
-        <div class="mdc-tab-scroller">
-          <div class="mdc-tab-scroller__scroll-area">
-            <div class="mdc-tab-scroller__scroll-content">
-              {/* INSERT LOGO HERE */}
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Dashboard</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Resources</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Budgets</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Transactions/POs</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Personnel</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Schools</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Assets</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-              
-              {/* INSERT DISTRICT INFO?*/}
-
-              <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
-                <span class="mdc-tab__content">
-                  <span class="mdc-tab__icon material-icons" aria-hidden="true"></span>
-                  <span class="mdc-tab__text-label">Login</span>
-                </span>
-                <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                </span>
-                <span class="mdc-tab__ripple"></span>
-              </button>
-
-            </div>
-          </div>
-        </div>
-      </div>
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home">Edstruments</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#link">Link</Nav.Link>
+              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       
       <h1>Please fill out the form to log your item!</h1>
       <TableData />    
