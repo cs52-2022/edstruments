@@ -3,6 +3,7 @@ import ItemTable from './table';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import '@fontsource/roboto/300.css';
 
 function App() {
   return (
