@@ -2,65 +2,62 @@ import React, { useState } from 'react';
 import StudentForm from './form';
 import jsonData from './data.json';
 import './table.css';
-  
-function TableData() {
-  const [studentData, setStudentData] = useState(jsonData);
-  
-  const tableRows = studentData.map((info) => {
-    return (
-      <tr>
-        <td>{info.id}</td>
-        <td>{info.name}</td>
-        <td>{info.status}</td>
-        <td>{info.condition}</td>
-        <td>{info.location}</td>
-        <td>{info.owner}</td>
-        <td>{info.user}</td>
-        <td>{info.checkoutdate}</td>
-        <td>{info.returnbydate}</td>
-        <td>{info.purchasedate}</td>
-        <td>{info.cost}</td>
-        <td>{info.currentvalue}</td>
-        <td>{info.schedule}</td>
-        <td>{info.comments}</td>
-      </tr>
-    );
-  });
-  
-  const addRows = (data) => {
-    const totalStudents = studentData.length;
-    data.id = totalStudents + 1;
-    const updatedStudentData = [...studentData];
-    updatedStudentData.push(data);
-    setStudentData(updatedStudentData);
-  };
-  
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 700,
+  },
+});
+
+function createData(itemNumber, itemName, cost, currentValue, user, location, status) {
+  return { itemNumber, itemName, cost, currentValue, user, location, status };
+}
+
+const rows = [
+  createData('01234', 'Chromebook', 800, 740, 'R Yuan', '200-203', 'In Use'),
+];
+
+export default function ItemTable() {
+  const classes = useStyles();
+
   return (
-    <div>
-      <table className="table table-stripped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Condition</th>
-            <th>Location</th>
-            <th>Owner</th>
-            <th>User</th>
-            <th>Checkout Date</th>
-            <th>Return-By Date</th>
-            <th>Purchase Date</th>
-            <th>Cost</th>
-            <th>Current Value</th>
-            <th>Maintenance Schedule</th>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
-      <StudentForm func={addRows} />
-    </div>
+    <TableContainer component={Paper}>
+      <Table className={classes.table} size="small" aria-label="item table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Item Number</TableCell>
+            <TableCell align="right">Item Name</TableCell>
+            <TableCell align="right">Cost ($)</TableCell>
+            <TableCell align="right">Current Value ($)</TableCell>
+            <TableCell align="right">User</TableCell>
+            <TableCell align="right">Location</TableCell>
+            <TableCell align="right">Status</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.itemNumber}>
+              <TableCell component="th" scope="row">
+                {row.itemNumber}
+              </TableCell>
+              <TableCell align="right">{row.itemName}</TableCell>
+              <TableCell align="right">{row.cost}</TableCell>
+              <TableCell align="right">{row.currentValue}</TableCell>
+              <TableCell align="right">{row.user}</TableCell>
+              <TableCell align="right">{row.location}</TableCell>
+              <TableCell align="right">{row.status}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
-  
-export default TableData;

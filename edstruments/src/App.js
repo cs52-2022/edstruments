@@ -1,5 +1,5 @@
 import './App.css';
-import TableData from './table';
+import ItemTable from './table';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
@@ -28,7 +28,7 @@ function App() {
       </Navbar>
       
       <h1>Please fill out the form to log your item!</h1>
-      <TableData />    
+      <ItemTable />    
     </div>
   );
 }
