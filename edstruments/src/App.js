@@ -4,6 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import Box from '@material-ui/core/Box';
+import TableDemo from "./TableDemo";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         </Container>
       </Navbar>
       
+      {/* Need to transfer CSS styling to a .css file */}
       <div style={{ marginLeft: '5%', marginTop: '40px', width: '90%' }}>
         <Box border={1} borderColor="black">
           BOX GOES HERE
@@ -42,6 +44,19 @@ function App() {
           <ItemTable />
           BOX ENDS HERE  
         </Box>
+
+        {/* TABLE THAT YOU CAN ADD ITEMS TO*/}
+        {/* Header with inline css */}
+        <h1
+          style={{
+              display: 'flex', justifyContent: 'center', padding: '15px',
+              border: '13px solid #b4f0b4', color: 'rgb(11, 167, 11)'
+            }}>
+          Catalog
+        </h1>
+        {/* Table component below header */}
+        <TableDemo />
+        
       </div>
 
         
