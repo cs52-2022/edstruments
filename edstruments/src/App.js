@@ -37,27 +37,25 @@ function App() {
       </Navbar>
       
       {/* Need to transfer CSS styling to a .css file */}
-      <div style={{ marginLeft: '5%', marginTop: '40px', width: '90%' }}>
-        <Box border={1} borderColor="black">
-          BOX GOES HERE
+      {/* <div style={{ marginLeft: '5%', marginTop: '40px', width: '90%' }}>
+        <Box border={1} borderColor="black"> */}
           <h1>Catalog</h1>
-          <ItemTable />
-          BOX ENDS HERE  
-        </Box>
+          {/* <ItemTable /> */}
+        {/* </Box>
+      </div> */}
 
-        {/* TABLE THAT YOU CAN ADD ITEMS TO*/}
-        {/* Header with inline css */}
-        <h1
-          style={{
-              display: 'flex', justifyContent: 'center', padding: '15px',
-              border: '13px solid #b4f0b4', color: 'rgb(11, 167, 11)'
-            }}>
-          Catalog
-        </h1>
-        {/* Table component below header */}
-        <TableDemo />
-        
-      </div>
+      {/* TABLE THAT YOU CAN ADD ITEMS TO*/}
+      {/* Header with inline css */}
+      {/* <h1
+        style={{
+          display: 'flex', justifyContent: 'center', padding: '15px',
+          border: '13px solid #b4f0b4', color: 'rgb(11, 167, 11)'
+        }}>
+        Catalog
+      </h1> */}
+      {/* Table component below header */}
+      
+      <TableDemo />
 
         
     </div>
