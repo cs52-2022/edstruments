@@ -274,10 +274,10 @@ function TableDemo() {
                     ) : (
                       // Displays items in rows that are already in the table
                       <div>
-                        <TableCell component="th" scope="row">
+                        <TableCell component="th" scope="row" style={{ width: 100 }}>
                           {row.itemNumber}
                         </TableCell>
-                        <TableCell component="th" scope="row">
+                        <TableCell component="th" scope="row" style={{ width: 100 }}>
                           {row.itemName}
                         </TableCell>
                         <TableCell component="th" scope="row" align="center">
@@ -300,9 +300,6 @@ function TableDemo() {
                           <DeleteOutlineIcon />
                           </Button>
                         </TableCell>
-
-
-                        
                       </div>
                     )}
                     {/* {isEdit ? (
