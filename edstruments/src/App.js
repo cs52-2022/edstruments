@@ -5,6 +5,7 @@ import * as ReactDOM from "react-dom";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import Box from '@material-ui/core/Box';
 import TableDemo from "./TableDemo";
+import SimpleDialogDemo from "./SimpleDialogDemo"
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
         </Container>
       </Navbar>
       
+
+      
       {/* Need to transfer CSS styling to a .css file */}
       {/* <div style={{ marginLeft: '5%', marginTop: '40px', width: '90%' }}>
         <Box border={1} borderColor="black"> */}
@@ -56,7 +59,7 @@ function App() {
       {/* Table component below header */}
       
       <TableDemo />
-
+      <SimpleDialogDemo />
         
     </div>
   );

@@ -15,7 +15,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-  
+import VisibilityIcon from '@material-ui/icons/Visibility';
+
 // Creating styles
 const useStyles = makeStyles({
     root: {
@@ -50,7 +51,10 @@ function TableDemo() {
     const [isEdit, setEdit] = React.useState(false);
     const [disable, setDisable] = React.useState(true);
     const [showConfirm, setShowConfirm] = React.useState(false);
-  
+
+    const [isPopUp, setIsPopUp] = React.useState(false); // Handles whether the item info popup appears (when adding/editing an item)
+    // - Richard wrote this ask me if you need help
+
     // Function For closing the alert snackbar
     const handleClose = (event, reason) => {
         if (reason === "clickaway") {
@@ -111,7 +115,8 @@ function TableDemo() {
         const list = [...rows];
         list.splice(i, 1);
         setRows(list);
-        setShowConfirm(false);
+        setShowConfirm(false); // Richard: I added this so deletions also show a confirmation snackbar
+        setOpen(true);
     };
   
     // Handle the case of delete confirmation 
@@ -119,9 +124,20 @@ function TableDemo() {
     const handleNo = () => {
         setShowConfirm(false);
     };
+
+
+    // When a user clicks the eye icon next to
+    // an item, this function will run and show
+    // a pop-up with the item's details.
+    const showDetails = (i) => {
+
+    }
+    // - Richard wrote this ask me if you need help
+
   
-  return (
+  return ( // Return for the entire table
     <TableBody>
+      
       <Snackbar
         open={open}
         autoHideDuration={2000}
@@ -132,7 +148,8 @@ function TableDemo() {
           Catalog updated successfully!
         </Alert>
       </Snackbar>
-      <Box margin={1}>
+      
+      <Box margin={5} border={3} borderColor='black'> {/* !!BUG: Box isn't visible. It flashes for 1 frame upon render, then disappears.*/}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             {isEdit ? (
@@ -143,17 +160,22 @@ function TableDemo() {
                 </Button>
                 {rows.length !== 0 && (
                   <div>
+                    {/* 
+                    I commented out the first condition because I think you should be able to save table w/o edits.
+                    - Richard
+
                     {disable ? (
                       <Button disabled align="right" onClick={handleSave}>
                         <DoneIcon />
                         SAVE
                       </Button>
-                    ) : (
-                      <Button align="right" onClick={handleSave}>
-                        <DoneIcon />
-                        SAVE
-                      </Button>
-                    )}
+                    ) : ( 
+                      */}
+                    <Button align="right" onClick={handleSave}>
+                      <DoneIcon />
+                      SAVE
+                    </Button>
+                    {/* )} */}
                   </div>
                 )}
               </div>
@@ -173,10 +195,11 @@ function TableDemo() {
         </div>
         <TableRow align="center"> </TableRow>
   
+        {/* Beginning of item table */}
         <Table
           className={classes.table}
           size="small"
-          aria-label="a dense table"
+          aria-label="asset table"
         >
           <TableHead>
             <TableRow>
@@ -192,7 +215,9 @@ function TableDemo() {
           <TableBody>
             {rows.map((row, i) => {
               return (
-                <div>
+                <div>  {/* !!!PROBLEM: This div is being inserted into the leftmost table cell, 
+                so all of the TableCells below are being crammed into the leftmost table cell 
+                NEED TO FIX, DON'T KNOW HOW*/}
                   <TableRow>
                     {isEdit ? (
                       <div>
@@ -204,7 +229,6 @@ function TableDemo() {
                             onChange={(e) => handleInputChange(e, i)}
                           />
                         </TableCell>
-
                         <TableCell padding="none">
                           <input
                             value={row.itemName}
@@ -212,7 +236,6 @@ function TableDemo() {
                             onChange={(e) => handleInputChange(e, i)}
                           />
                         </TableCell>
-
                         <TableCell padding="none">
                           <input
                             value={row.cost}
@@ -220,7 +243,6 @@ function TableDemo() {
                             onChange={(e) => handleInputChange(e, i)}
                           />
                         </TableCell>
-
                         <TableCell padding="none">
                           <input
                             value={row.currentValue}
@@ -228,7 +250,6 @@ function TableDemo() {
                             onChange={(e) => handleInputChange(e, i)}
                           />
                         </TableCell>
-
                         <TableCell padding="none">
                           <input
                             value={row.user}
@@ -236,7 +257,6 @@ function TableDemo() {
                             onChange={(e) => handleInputChange(e, i)}
                           />
                         </TableCell>
-
                         <TableCell padding="none">
                           <select
                             style={{ width: "100px" }}
@@ -249,7 +269,6 @@ function TableDemo() {
                             <option value="Branner Hall">Branner Hall</option>
                           </select>
                         </TableCell>
-
                         <TableCell padding="none">
                           <select
                             style={{ width: "100px" }}
@@ -262,22 +281,19 @@ function TableDemo() {
                             <option value="Branner Hall">Available</option>
                           </select>
                         </TableCell>
-
-                        <TableCell>
+                        <TableCell> {/* Delete button */}
                           <Button className="mr10" onClick={handleConfirm}>
                           <ClearIcon />
                           </Button>
                         </TableCell>
-                        
                       </div>
-
                     ) : (
                       // Displays items in rows that are already in the table
-                      <div>
-                        <TableCell component="th" scope="row" style={{ width: 100 }}>
+                      <div> {/*Problem: Div is being placed wholly in the first table cell*/}
+                        <TableCell component="th" scope="row" align="center">
                           {row.itemNumber}
                         </TableCell>
-                        <TableCell component="th" scope="row" style={{ width: 100 }}>
+                        <TableCell component="th" scope="row" align="center">
                           {row.itemName}
                         </TableCell>
                         <TableCell component="th" scope="row" align="center">
@@ -295,23 +311,20 @@ function TableDemo() {
                         <TableCell component="th" scope="row" align="center">
                           {row.status}
                         </TableCell>
-                        <TableCell>
+                        <TableCell> {/* Delete button */}
                           <Button className="mr10" onClick={handleConfirm}>
                           <DeleteOutlineIcon />
                           </Button>
                         </TableCell>
+                        <TableCell> {/* View item details button */}
+                          <Button className="mr10"> {/* TODO: onClick, pop up dialog from SimpleDialogDemo.js */}
+                          <VisibilityIcon />
+                          </Button>
+                        </TableCell>
                       </div>
                     )}
-                    {/* {isEdit ? (
-                      <Button className="mr10" onClick={handleConfirm}>
-                        <ClearIcon />
-                      </Button>
-                    ) : (
-                      <Button className="mr10" onClick={handleConfirm}>
-                        <DeleteOutlineIcon />
-                      </Button>
-                    )} */}
-                    {showConfirm && (
+                    {showConfirm && ( /* If showConfirm (happens when you click delete icon), 
+                    confirmation box pops up */
                       <div>
                         <Dialog
                           open={showConfirm}
@@ -324,7 +337,7 @@ function TableDemo() {
                           </DialogTitle>
                           <DialogContent>
                             <DialogContentText id="alert-dialog-description">
-                              Are you sure to delete
+                              Are you sure you want to delete this item?
                             </DialogContentText>
                           </DialogContent>
                           <DialogActions>
@@ -345,16 +358,16 @@ function TableDemo() {
                           </DialogActions>
                         </Dialog>
                       </div>
-                    )}
+                    )} { /* End of code for "confirm delete" box */ }
                   </TableRow>
-                </div>
-              );
-            })}
+                </div> 
+              ); /* End of return statement */
+            })} {/* End of rows map statement */}
           </TableBody>
         </Table>
       </Box>
     </TableBody>
-  );
+  ); // End of overall return statement
 }
   
 export default TableDemo;
