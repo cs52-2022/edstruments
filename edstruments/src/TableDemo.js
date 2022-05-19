@@ -15,6 +15,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 // Creating styles
 const useStyles = makeStyles({
@@ -50,7 +51,10 @@ function TableDemo() {
     const [isEdit, setEdit] = React.useState(false);
     const [disable, setDisable] = React.useState(true);
     const [showConfirm, setShowConfirm] = React.useState(false);
-  
+
+    const [isPopUp, setIsPopUp] = React.useState(false); // Handles whether the item info popup appears (when adding/editing an item)
+    // - Richard wrote this ask me if you need help
+
     // Function For closing the alert snackbar
     const handleClose = (event, reason) => {
         if (reason === "clickaway") {
@@ -111,7 +115,8 @@ function TableDemo() {
         const list = [...rows];
         list.splice(i, 1);
         setRows(list);
-        setShowConfirm(false);
+        setShowConfirm(false); // Richard: I added this so deletions also show a confirmation snackbar
+        setOpen(true);
     };
   
     // Handle the case of delete confirmation 
@@ -119,13 +124,19 @@ function TableDemo() {
     const handleNo = () => {
         setShowConfirm(false);
     };
+
+
+    // When a user clicks the eye icon next to
+    // an item, this function will run and show
+    // a pop-up with the item's details.
+    const showDetails = (i) => {
+
+    }
+    // - Richard wrote this ask me if you need help
+
   
   return ( // Return for the entire table
     <TableBody>
-      {/* 
-      I don't think we need this snackbar so I commented it out.
-      We should probably delete the relevant snackbar state variables, since they aren't needed now. 
-      -Richard
       
       <Snackbar
         open={open}
@@ -136,7 +147,7 @@ function TableDemo() {
         <Alert onClose={handleClose} severity="success">
           Catalog updated successfully!
         </Alert>
-      </Snackbar> */}
+      </Snackbar>
       
       <Box margin={5} border={3} borderColor='black'> {/* !!BUG: Box isn't visible. It flashes for 1 frame upon render, then disappears.*/}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -303,6 +314,11 @@ function TableDemo() {
                         <TableCell> {/* Delete button */}
                           <Button className="mr10" onClick={handleConfirm}>
                           <DeleteOutlineIcon />
+                          </Button>
+                        </TableCell>
+                        <TableCell> {/* View item details button */}
+                          <Button className="mr10"> {/* TODO: onClick, pop up dialog from SimpleDialogDemo.js */}
+                          <VisibilityIcon />
                           </Button>
                         </TableCell>
                       </div>
