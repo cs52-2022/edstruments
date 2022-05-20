@@ -28,7 +28,6 @@ const useStyles = makeStyles({
         minWidth: 650,
         border: '2px solid green',
         margin: '10px',
-        justify: 'center',
     },
     snackbar: {
         bottom: "104px",
