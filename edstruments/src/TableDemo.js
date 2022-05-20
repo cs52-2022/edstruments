@@ -26,6 +26,9 @@ const useStyles = makeStyles({
     },
     table: {
         minWidth: 650,
+        border: '2px solid green',
+        margin: '10px',
+        justify: 'center',
     },
     snackbar: {
         bottom: "104px",
@@ -149,7 +152,7 @@ function TableDemo() {
         </Alert>
       </Snackbar>
       
-      <Box margin={5} border={3} borderColor='black'> {/* !!BUG: Box isn't visible. It flashes for 1 frame upon render, then disappears.*/}
+      <Box> {/* !!BUG: Box isn't visible. It flashes for 1 frame upon render, then disappears.*/}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             {isEdit ? (
@@ -218,9 +221,8 @@ function TableDemo() {
                 <div>  {/* !!!PROBLEM: This div is being inserted into the leftmost table cell, 
                 so all of the TableCells below are being crammed into the leftmost table cell 
                 NEED TO FIX, DON'T KNOW HOW*/}
-                  <TableRow>
                     {isEdit ? (
-                      <div>
+                      <TableRow>
                         {/*Information for items that are being edited or added*/}
                         <TableCell padding="none">
                           <input
@@ -286,10 +288,10 @@ function TableDemo() {
                           <ClearIcon />
                           </Button>
                         </TableCell>
-                      </div>
+                      </TableRow>
                     ) : (
                       // Displays items in rows that are already in the table
-                      <div> {/*Problem: Div is being placed wholly in the first table cell*/}
+                      <TableRow> {/*Problem: Div is being placed wholly in the first table cell*/}
                         <TableCell component="th" scope="row" align="center">
                           {row.itemNumber}
                         </TableCell>
@@ -317,11 +319,11 @@ function TableDemo() {
                           </Button>
                         </TableCell>
                         <TableCell> {/* View item details button */}
-                          <Button className="mr10"> {/* TODO: onClick, pop up dialog from SimpleDialogDemo.js */}
+                          <Button className="mr10"> {/* TODO: onClick, pop up the dialog from SimpleDialogDemo.js */}
                           <VisibilityIcon />
                           </Button>
                         </TableCell>
-                      </div>
+                      </TableRow>
                     )}
                     {showConfirm && ( /* If showConfirm (happens when you click delete icon), 
                     confirmation box pops up */
@@ -359,8 +361,7 @@ function TableDemo() {
                         </Dialog>
                       </div>
                     )} { /* End of code for "confirm delete" box */ }
-                  </TableRow>
-                </div> 
+                    </div>
               ); /* End of return statement */
             })} {/* End of rows map statement */}
           </TableBody>
