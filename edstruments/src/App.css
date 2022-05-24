@@ -41,3 +41,42 @@ h1 {
   font-family: Roboto;
   font-size: 28pt
 }
+
+.color-nav {
+  background-color: white;
+  border-bottom: 1px solid black;
+}
+
+.edstruments-logo {
+  height: 40px;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+}
+
+.school-info {
+  text-align: right;
+  padding-bottom: 0;
+  padding-right: 5px;
+}
+
+.district {
+  font-size: 11pt;
+}
+
+.school {
+  font-weight: bold;
+  font-size: 10pt;
+}
+
+.user-icon-circle {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  background-color:#61dafb;
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+}
