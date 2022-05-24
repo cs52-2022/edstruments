@@ -53,7 +53,6 @@ function App() {
       {/* Need to transfer CSS styling to a .css file */}
       {/* <div style={{ marginLeft: '5%', marginTop: '40px', width: '90%' }}>
         <Box border={1} borderColor="black"> */}
-          <h1>Catalog</h1>
           {/* <ItemTable /> */}
         {/* </Box>
       </div> */}

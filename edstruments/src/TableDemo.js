@@ -26,8 +26,9 @@ const useStyles = makeStyles({
     },
     table: {
         minWidth: 650,
-        border: '2px solid green',
-        margin: '10px',
+        border: '1px solid #D5D8EB',
+        borderRadius: '4px', // **TODO: Fix this so the table box has rounded corners**
+        // margin: '4px', (not necessary, but borrow this code if anything else needs space around it)
     },
     snackbar: {
         bottom: "104px",
@@ -138,8 +139,8 @@ function TableDemo() {
 
   
   return ( // Return for the entire table
-    <TableBody>
-      
+    <TableBody class="table-styling">
+      <h1>CATALOG</h1>
       <Snackbar
         open={open}
         autoHideDuration={2000}
@@ -151,7 +152,7 @@ function TableDemo() {
         </Alert>
       </Snackbar>
       
-      <Box> {/* !!BUG: Box isn't visible. It flashes for 1 frame upon render, then disappears.*/}
+      <Box>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             {isEdit ? (
@@ -162,17 +163,6 @@ function TableDemo() {
                 </Button>
                 {rows.length !== 0 && (
                   <div>
-                    {/* 
-                    I commented out the first condition because I think you should be able to save table w/o edits.
-                    - Richard
-
-                    {disable ? (
-                      <Button disabled align="right" onClick={handleSave}>
-                        <DoneIcon />
-                        SAVE
-                      </Button>
-                    ) : ( 
-                      */}
                     <Button align="right" onClick={handleSave}>
                       <DoneIcon />
                       SAVE
@@ -212,162 +202,53 @@ function TableDemo() {
               <TableCell>User</TableCell>
               <TableCell>Location</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row, i) => {
               return (
-                <div>  {/* !!!PROBLEM: This div is being inserted into the leftmost table cell, 
-                so all of the TableCells below are being crammed into the leftmost table cell 
-                NEED TO FIX, DON'T KNOW HOW*/}
-                    {isEdit ? (
-                      <TableRow>
-                        {/*Information for items that are being edited or added*/}
-                        <TableCell padding="none">
-                          <input
-                            value={row.itemNumber}
-                            name="itemNumber"
-                            onChange={(e) => handleInputChange(e, i)}
-                          />
-                        </TableCell>
-                        <TableCell padding="none">
-                          <input
-                            value={row.itemName}
-                            name="itemName"
-                            onChange={(e) => handleInputChange(e, i)}
-                          />
-                        </TableCell>
-                        <TableCell padding="none">
-                          <input
-                            value={row.cost}
-                            name="cost"
-                            onChange={(e) => handleInputChange(e, i)}
-                          />
-                        </TableCell>
-                        <TableCell padding="none">
-                          <input
-                            value={row.currentValue}
-                            name="currentValue"
-                            onChange={(e) => handleInputChange(e, i)}
-                          />
-                        </TableCell>
-                        <TableCell padding="none">
-                          <input
-                            value={row.user}
-                            name="user"
-                            onChange={(e) => handleInputChange(e, i)}
-                          />
-                        </TableCell>
-                        <TableCell padding="none">
-                          <select
-                            style={{ width: "100px" }}
-                            name="location"
-                            value={row.location}
-                            onChange={(e) => handleInputChange(e, i)}
-                          >
-                            <option value=""></option>
-                            <option value="Green Library">Green Library</option>
-                            <option value="Branner Hall">Branner Hall</option>
-                          </select>
-                        </TableCell>
-                        <TableCell padding="none">
-                          <select
-                            style={{ width: "100px" }}
-                            name="status"
-                            value={row.status}
-                            onChange={(e) => handleInputChange(e, i)}
-                          >
-                            <option value=""></option>
-                            <option value="Green Library">In Use</option>
-                            <option value="Branner Hall">Available</option>
-                          </select>
-                        </TableCell>
-                        <TableCell> {/* Delete button */}
-                          <Button className="mr10" onClick={handleConfirm}>
-                          <ClearIcon />
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ) : (
-                      // Displays items in rows that are already in the table
-                      <TableRow> {/*Problem: Div is being placed wholly in the first table cell*/}
-                        <TableCell component="th" scope="row" align="center">
-                          {row.itemNumber}
-                        </TableCell>
-                        <TableCell component="th" scope="row" align="center">
-                          {row.itemName}
-                        </TableCell>
-                        <TableCell component="th" scope="row" align="center">
-                          {row.cost}
-                        </TableCell>
-                        <TableCell component="th" scope="row" align="center">
-                          {row.currentValue}
-                        </TableCell>
-                        <TableCell component="th" scope="row" align="center">
-                          {row.user}
-                        </TableCell>
-                        <TableCell component="th" scope="row" align="center">
-                          {row.location}
-                        </TableCell>
-                        <TableCell component="th" scope="row" align="center">
-                          {row.status}
-                        </TableCell>
-                        <TableCell> {/* Delete button */}
-                          <Button className="mr10" onClick={handleConfirm}>
-                          <DeleteOutlineIcon />
-                          </Button>
-                        </TableCell>
-                        <TableCell> {/* View item details button */}
-                          <Button className="mr10"> {/* TODO: onClick, pop up the dialog from SimpleDialogDemo.js */}
-                          <VisibilityIcon />
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    )}
-                    {showConfirm && ( /* If showConfirm (happens when you click delete icon), 
-                    confirmation box pops up */
-                      <div>
-                        <Dialog
-                          open={showConfirm}
-                          onClose={handleNo}
-                          aria-labelledby="alert-dialog-title"
-                          aria-describedby="alert-dialog-description"
-                        >
-                          <DialogTitle id="alert-dialog-title">
-                            {"Confirm Delete"}
-                          </DialogTitle>
-                          <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                              Are you sure you want to delete this item?
-                            </DialogContentText>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button
-                              onClick={() => handleRemoveClick(i)}
-                              color="primary"
-                              autoFocus
-                            >
-                              Yes
-                            </Button>
-                            <Button
-                              onClick={handleNo}
-                              color="primary"
-                              autoFocus
-                            >
-                              No
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
-                      </div>
-                    )} { /* End of code for "confirm delete" box */ }
-                    </div>
-              ); /* End of return statement */
-            })} {/* End of rows map statement */}
+                <TableRow>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.itemNumber}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.itemName}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.cost}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.currentValue}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.user}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.location}
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.status}
+                  </TableCell>
+                  <TableCell> {/* Delete button */}
+                    <Button className="mr10" onClick={handleConfirm}>
+                    <DeleteOutlineIcon />
+                    </Button>
+                  </TableCell>
+                  <TableCell> {/* View item details button */}
+                    <Button className="mr10"> {/* TODO: onClick, pop up the dialog from SimpleDialogDemo.js */}
+                    <VisibilityIcon />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ); /* End table row return */
+            })} {/* End rows.map() */}
           </TableBody>
         </Table>
       </Box>
     </TableBody>
-  ); // End of overall return statement
+  ); /* End of overall return */
 }
   
 export default TableDemo;
