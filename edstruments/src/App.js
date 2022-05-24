@@ -7,13 +7,18 @@ import Box from '@material-ui/core/Box';
 import TableDemo from "./TableDemo";
 import SimpleDialogDemo from "./SimpleDialogDemo"
 
+import edstruments_logo from "./images/edstruments-logo.png";
+
 function App() {
   return (
 
     <div className="App">
-      <Navbar bg="light" expand="lg">
+      {/* <Navbar className="navbar" bg="light" expand="lg"> */}
+      <Navbar className="color-nav" variant="light">
         <Container>
-          <Navbar.Brand href="#home">Edstruments</Navbar.Brand>
+          <a href="https://edstruments.com/">
+            <img class="edstruments-logo" src={edstruments_logo} href="#home"></img>
+          </a>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -33,6 +38,12 @@ function App() {
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
               </NavDropdown> */}
             </Nav>
+            <div className="school-info">
+              <p class="district">Metro City Unified School District</p>
+              <p class="school">John F. Kennedy High School</p>
+            </div>
+            <div className="vertical-line"></div>
+            <div className="user-icon-circle">AJ</div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
