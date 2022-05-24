@@ -58,15 +58,21 @@ h1 {
   text-align: right;
   padding-bottom: 0;
   padding-right: 5px;
+  border-right: 1px solid rgb(192, 192, 192);
 }
 
 .district {
   font-size: 11pt;
+  padding-bottom: 0;
 }
 
 .school {
   font-weight: bold;
   font-size: 10pt;
+}
+
+.vertical-line {
+  width: 5px;
 }
 
 .user-icon-circle {
