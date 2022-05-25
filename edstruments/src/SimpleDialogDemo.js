@@ -40,11 +40,10 @@ function SimpleDialog(props) {
 
         <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
-            <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+            <Avatar sx={{ bgcolor: "#1787E0", color: "white" }}>
               <DoneIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Done" />
         </ListItem>
       </List>
     </Dialog>
@@ -76,8 +75,8 @@ export default function SimpleDialogDemo() {
         Selected: {selectedValue}
       </Typography>
       <br /> */}
-      <Button onClick={handleClickOpen}>
-        <AddBoxIcon />
+      <Button variant="contained" onClick={handleClickOpen}>
+        <p class="body-text">Add Item with Dialog</p>
       </Button>
       <SimpleDialog
         selectedValue={selectedValue}

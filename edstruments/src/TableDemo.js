@@ -157,7 +157,6 @@ function TableDemo() {
       <Box>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-                <SimpleDialogDemo />
                 <Button style={{
                   borderRadius: 4,
                   backgroundColor: "#1787E0",
