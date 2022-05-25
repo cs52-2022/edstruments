@@ -12,6 +12,7 @@ import Dialog from '@mui/material/Dialog';
 // import AddIcon from '@mui/icons-material/Add';
 import DoneIcon from '@mui/icons-material/Done';
 import Typography from '@mui/material/Typography';
+import AddBoxIcon from "@material-ui/icons/AddBox";
 import { blue } from '@mui/material/colors';
 
 const emails = ['Name:', 'ID:', 'Status:'];
@@ -75,8 +76,8 @@ export default function SimpleDialogDemo() {
         Selected: {selectedValue}
       </Typography>
       <br /> */}
-      <Button variant="outlined" onClick={handleClickOpen}>
-        View Item Details
+      <Button onClick={handleClickOpen}>
+        <AddBoxIcon />
       </Button>
       <SimpleDialog
         selectedValue={selectedValue}

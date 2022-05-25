@@ -5,8 +5,6 @@ import * as ReactDOM from "react-dom";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import Box from '@material-ui/core/Box';
 import TableDemo from "./TableDemo";
-import SimpleDialogDemo from "./SimpleDialogDemo"
-
 import edstruments_logo from "./images/edstruments-logo.png";
 
 function App() {
@@ -69,7 +67,6 @@ function App() {
       {/* Table component below header */}
       
       <TableDemo />
-      <SimpleDialogDemo />
         
     </div>
   );

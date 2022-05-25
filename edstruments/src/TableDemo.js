@@ -16,6 +16,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import EditIcon from '@mui/icons-material/Edit';
+import SimpleDialogDemo from './SimpleDialogDemo';
 
 // Creating styles
 const useStyles = makeStyles({
@@ -140,7 +142,7 @@ function TableDemo() {
   
   return ( // Return for the entire table
     <TableBody class="table-styling">
-      <h1>CATALOG</h1>
+      <p class="catalog">CATALOG</p>
       <Snackbar
         open={open}
         autoHideDuration={2000}
@@ -155,34 +157,18 @@ function TableDemo() {
       <Box>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-            {isEdit ? (
-              <div>
-                <Button onClick={handleAdd}>
-                  <AddBoxIcon onClick={handleAdd} />
-                  ADD
+                <SimpleDialogDemo />
+                <Button style={{
+                  borderRadius: 4,
+                  backgroundColor: "#1787E0",
+                }}
+                variant="contained" onClick={handleAdd}>
+                  <p class="body-text">Add Item</p>
                 </Button>
-                {rows.length !== 0 && (
-                  <div>
-                    <Button align="right" onClick={handleSave}>
-                      <DoneIcon />
-                      SAVE
-                    </Button>
-                    {/* )} */}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div>
-                <Button onClick={handleAdd}>
-                  <AddBoxIcon onClick={handleAdd} />
-                  ADD
-                </Button>
-                <Button align="right" onClick={handleEdit}>
+                {/* <Button align="right" onClick={handleEdit}>
                   <CreateIcon />
                   EDIT
-                </Button>
-              </div>
-            )}
+                </Button> */}
           </div>
         </div>
         <TableRow align="center"> </TableRow>
