@@ -56,9 +56,10 @@
   line-height: 14px;
 }
 
-.color-nav {
+.top-navbar {
   background-color: white;
   border-bottom: 1px solid black;
+  height: 4.188rem;
 }
 
 .edstruments-logo {
@@ -73,16 +74,19 @@
   padding-bottom: 0;
   padding-right: 5px;
   border-right: 1px solid rgb(192, 192, 192);
+  height: 3.2rem;
 }
 
 .district {
   font-size: 11pt;
   padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .school {
   font-weight: bold;
   font-size: 10pt;
+  margin-bottom: 0;
 }
 
 .vertical-line {
@@ -91,6 +95,7 @@
 
 .user-icon-circle {
   width: 50px;
+  min-width: 50px;
   height: 50px;
   border: none;
   border-radius: 50px;

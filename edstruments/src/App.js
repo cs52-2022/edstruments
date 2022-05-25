@@ -13,7 +13,7 @@ function App() {
 
     <div className="App">
       {/* <Navbar className="navbar" bg="light" expand="lg"> */}
-      <Navbar className="color-nav" variant="light">
+      <Navbar className="top-navbar" variant="light">
         <Container>
           <a href="https://edstruments.com/">
             <img class="edstruments-logo" src={edstruments_logo} href="#home"></img>
