@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  /* background-color: #F2F2F2;  */
 }
 
 .App-logo {
@@ -37,9 +38,22 @@
   }
 }
 
-h1 {
-  font-family: Roboto;
-  font-size: 28pt
+.catalog {
+  font: Roboto;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 10px;
+  text-align: left;
+  color: #42505C;
+}
+
+.body-text {
+  font: Roboto;
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 14px;
 }
 
 .color-nav {
@@ -85,4 +99,19 @@ h1 {
   cursor: pointer;
   line-height: 50px;
   text-align: center;
+}
+
+/* .white-background {
+  background-color: white;
+} */
+
+.table-styling {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected-text {
+  color: #1787E0;
 }
