@@ -65,43 +65,11 @@ function TableDemo() {
   /* Begin DIALOG code */
 
   // Dialog initial states
-  const [itemID, setItemID] = React.useState("");
-  const [itemName, setItemName] = React.useState("");
-  const [cost, setCost] = React.useState("");
-  const [currentValue, setCurrentValue] = React.useState("");
-  const [user, setUser] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [status, setStatus] = React.useState("");
+  
 
   const labels = ['ID:', 'Name:', 'Cost:', 'Current Value:', 'User:', 'Location:', 'Status:'];
-  const states = [itemID, itemName, cost, currentValue, user, location, status];
-  const setters = [setItemID, setItemName, setCost, setCurrentValue, setUser, setLocation, setStatus];
 
-  const handleIDChange = (e) => {
-    setItemID(e.target.itemID);
-    console.log(e.target.itemID);
-  }
-  const handleNameChange = (e) => {
-    setItemName(e.target.itemName);
-  }
-  const handleCostChange = (e) => {
-    setCost(e.target.cost);
-  }
-  const handleValueChange = (e) => {
-    setCurrentValue(e.target.currentValue);
-  }
-  const handleUserChange = (e) => {
-    setUser(e.target.value);
-  }
-  const handleLocationChange = (e) => {
-    setLocation(e.target.value);
-  }
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
-    console.log(e);
-  }
-
-  const changers = [handleIDChange, handleNameChange, handleCostChange, handleValueChange, handleUserChange, handleLocationChange, handleStatusChange];
+  
 
 
   function AddDialog(props) {
@@ -109,10 +77,46 @@ function TableDemo() {
 
     const [val, setVal] = React.useState("");
 
-    const handleValChange = e => {
-      console.log(e.target.value);
+    const [itemID, setItemID] = React.useState("");
+    const [itemName, setItemName] = React.useState("");
+    const [cost, setCost] = React.useState("");
+    const [currentValue, setCurrentValue] = React.useState("");
+    const [user, setUser] = React.useState("");
+    const [location, setLocation] = React.useState("");
+    const [status, setStatus] = React.useState("");
+
+    const handleValChange = (e) => {
       setVal(e.target.value);
-      rows[rows.length - 1].itemID = val;
+      rows[rows.length - 1].itemID = itemID;
+    }
+
+    const handleIDChange = (e) => {
+      setItemID(e.target.value);
+      rows[rows.length - 1].itemID = itemID;
+    }
+    const handleNameChange = (e) => {
+      setItemName(e.target.value);
+      rows[rows.length - 1].itemName = itemName;
+    }
+    const handleCostChange = (e) => {
+      setCost(e.target.value);
+      rows[rows.length - 1].cost = cost;
+    }
+    const handleCurrentValueChange = (e) => {
+      setCurrentValue(e.target.value);
+      rows[rows.length - 1].currentValue = currentValue;
+    }
+    const handleUserChange = (e) => {
+      setUser(e.target.value);
+      rows[rows.length - 1].user = user;
+    }
+    const handleLocationChange = (e) => {
+      setLocation(e.target.value);
+      rows[rows.length - 1].location = location;
+    }
+    const handleStatusChange = (e) => {
+      setStatus(e.target.value);
+      rows[rows.length - 1].status = status;
     }
 
     return (
@@ -121,6 +125,42 @@ function TableDemo() {
         <List sx={{ pt: 0 }}>
           {/* Deleted map statement */}
             <ListItem>
+              <TextField
+                value={itemID}
+                onChange={handleIDChange}
+                id="outlined-password-input"
+                label="type here"
+              />
+              <TextField
+                value={itemName}
+                onChange={handleNameChange}
+                id="outlined-password-input"
+                label="type here"
+              />
+              <TextField
+                value={cost}
+                onChange={handleCostChange}
+                id="outlined-password-input"
+                label="type here"
+              />
+              <TextField
+                value={val}
+                onChange={handleValChange}
+                id="outlined-password-input"
+                label="type here"
+              />
+              <TextField
+                value={val}
+                onChange={handleValChange}
+                id="outlined-password-input"
+                label="type here"
+              />
+              <TextField
+                value={val}
+                onChange={handleValChange}
+                id="outlined-password-input"
+                label="type here"
+              />
               <TextField
                 value={val}
                 onChange={handleValChange}
@@ -324,25 +364,25 @@ function TableDemo() {
             {rows.map((row, i) => {
               return (
                 <TableRow>
-                  <TableCell component="th" scope="row" align="center">
+                  <TableCell component="th" scope="row" align="left">
                     {row.itemID}
                   </TableCell>
-                  <TableCell component="th" scope="row" align="center">
+                  <TableCell component="th" scope="row" align="left">
                     {row.itemName}
                   </TableCell>
-                  <TableCell component="th" scope="row" align="center">
+                  <TableCell component="th" scope="row" align="left">
                     {row.cost}
                   </TableCell>
-                  <TableCell component="th" scope="row" align="center">
+                  <TableCell component="th" scope="row" align="left">
                     {row.currentValue}
                   </TableCell>
-                  <TableCell component="th" scope="row" align="center">
+                  <TableCell component="th" scope="row" align="left">
                     {row.user}
                   </TableCell>
-                  <TableCell component="th" scope="row" align="center">
+                  <TableCell component="th" scope="row" align="left">
                     {row.location}
                   </TableCell>
-                  <TableCell component="th" scope="row" align="center">
+                  <TableCell component="th" scope="row" align="left">
                     {row.status}
                   </TableCell>
                   <TableCell> {/* Delete button */}
