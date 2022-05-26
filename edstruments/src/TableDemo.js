@@ -62,6 +62,37 @@ function TableDemo() {
   const [status, setStatus] = React.useState("");
 
   const labels = ['ID:', 'Name:', 'Cost:', 'Current Value:', 'User:', 'Location:', 'Status:'];
+  const states = [itemNumber, itemName, cost, currentValue, user, location, status];
+  const setters = [setItemNumber, setItemName, setCost, setCurrentValue, setUser, setLocation, setStatus];
+
+  const bigArray = [labels, states, setters]
+
+  const handleNumberChange = (e) => {
+    setItemNumber(e.target.itemNumber);
+    console.log("a");
+  }
+  const handleNameChange = (e) => {
+    setItemName(e.target.itemName);
+    console.log("b");
+  }
+  const handleCostChange = (e) => {
+    setCost(e.target.cost);
+  }
+  const handleValueChange = (e) => {
+    setCurrentValue(e.target.currentValue);
+  }
+  const handleUserChange = (e) => {
+    setUser(e.target.user);
+  }
+  const handleLocationChange = (e) => {
+    setLocation(e.target.location);
+  }
+  const handleStatusChange = (e) => {
+    setStatus(e.target.status);
+    console.log(e);
+  }
+
+  const changers = [handleNumberChange, handleNameChange, handleCostChange, handleValueChange, handleUserChange, handleLocationChange, handleStatusChange];
 
 
   function SimpleDialog(props) {
@@ -71,13 +102,14 @@ function TableDemo() {
       <Dialog onClose={handleDialogClose} open={dialogOpen}>
         <DialogTitle>Item Details</DialogTitle>
         <List sx={{ pt: 0 }}>
-          {labels.map((label) => (
+          {labels.map((label, index) => (
             <ListItem>
               <ListItemText primary={label}/>
               <TextField
+                value={states[index]}
+                onChange={changers[index]}
                 id="outlined-password-input"
                 label="type information here"
-                type="password"
                 autoComplete="current-password"
               />
             </ListItem>
@@ -107,6 +139,7 @@ function TableDemo() {
   };
 
   const handleDialogClose = () => {
+    handleAdd();
     setDialogOpen(false);
   };
 
