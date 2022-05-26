@@ -55,6 +55,9 @@ const useStyles = makeStyles({
     snackbar: {
         bottom: "104px",
     },
+    tableHead: {
+      backgroundColor: '#1787E033',
+    }
 });
 
 function TableDemo() {  
@@ -304,7 +307,7 @@ function TableDemo() {
           size="small"
           aria-label="asset table"
         >
-          <TableHead>
+          <TableHead className={classes.tableHead}>
             <TableRow>
               <TableCell>Item ID</TableCell>
               <TableCell>Item Name</TableCell>
