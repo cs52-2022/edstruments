@@ -264,7 +264,7 @@ function TableDemo() {
   
   return ( // Return for the entire table
     <TableBody class="table-styling">
-      <p class="catalog">CATALOG</p>
+      <h1 class="catalog">Catalog</h1>
       <Snackbar
         open={open}
         autoHideDuration={2000}
