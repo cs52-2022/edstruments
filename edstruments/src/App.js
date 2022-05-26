@@ -48,7 +48,6 @@ function App() {
       </Navbar>
       
       <TableDemo />
-      <SimpleDialogDemo />
         
     </div>
   );

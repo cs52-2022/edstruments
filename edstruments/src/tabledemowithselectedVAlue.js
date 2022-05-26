@@ -17,6 +17,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
+import SimpleDialogDemo from './SimpleDialogDemo';
 
 import PropTypes from 'prop-types';
 import List from '@mui/material/List';
@@ -24,10 +25,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-
-import Avatar from '@mui/material/Avatar';
-
-import TextField from '@mui/material/TextField';
 
 
 // Creating styles
@@ -48,107 +45,7 @@ const useStyles = makeStyles({
     },
 });
 
-function TableDemo() {  
-
-  /* Begin DIALOG code */
-
-  // Dialog initial states
-  const [itemNumber, setItemNumber] = React.useState("");
-  const [itemName, setItemName] = React.useState("");
-  const [cost, setCost] = React.useState("");
-  const [currentValue, setCurrentValue] = React.useState("");
-  const [user, setUser] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [status, setStatus] = React.useState("");
-
-  const labels = ['ID:', 'Name:', 'Cost:', 'Current Value:', 'User:', 'Location:', 'Status:'];
-  const states = [itemNumber, itemName, cost, currentValue, user, location, status];
-  const setters = [setItemNumber, setItemName, setCost, setCurrentValue, setUser, setLocation, setStatus];
-
-  const bigArray = [labels, states, setters]
-
-  const handleNumberChange = (e) => {
-    setItemNumber(e.target.itemNumber);
-    console.log("a");
-  }
-  const handleNameChange = (e) => {
-    setItemName(e.target.itemName);
-    console.log("b");
-  }
-  const handleCostChange = (e) => {
-    setCost(e.target.cost);
-  }
-  const handleValueChange = (e) => {
-    setCurrentValue(e.target.currentValue);
-  }
-  const handleUserChange = (e) => {
-    setUser(e.target.user);
-  }
-  const handleLocationChange = (e) => {
-    setLocation(e.target.location);
-  }
-  const handleStatusChange = (e) => {
-    setStatus(e.target.status);
-    console.log(e);
-  }
-
-  const changers = [handleNumberChange, handleNameChange, handleCostChange, handleValueChange, handleUserChange, handleLocationChange, handleStatusChange];
-
-
-  function SimpleDialog(props) {
-    const { handleDialogClose, dialogOpen } = props;
-
-    return (
-      <Dialog onClose={handleDialogClose} open={dialogOpen}>
-        <DialogTitle>Item Details</DialogTitle>
-        <List sx={{ pt: 0 }}>
-          {labels.map((label, index) => (
-            <ListItem>
-              <ListItemText primary={label}/>
-              <TextField
-                value={states[index]}
-                onChange={changers[index]}
-                id="outlined-password-input"
-                label="type information here"
-                autoComplete="current-password"
-              />
-            </ListItem>
-          ))}
-          
-          <ListItem autoFocus button onClick={handleDialogClose}>
-          <ListItemAvatar>
-            <Avatar sx={{ bgcolor: "#1787E0", color: "white" }}>
-              <DoneIcon />
-            </Avatar>
-          </ListItemAvatar>
-        </ListItem>
-        </List>
-      </Dialog>
-    );
-  }
-
-  SimpleDialog.propTypes = {
-    handleDialogClose: PropTypes.func.isRequired,
-    dialogOpen: PropTypes.bool.isRequired,
-  };
-
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-
-  const handleDialogOpen = () => {
-    setDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    handleAdd();
-    setDialogOpen(false);
-  };
-
-  /* End DIALOG code */
-
-
-
-    /* Begin TABLE code */
-
+function TableDemo() {
     // Creating style object
     const classes = useStyles();
   
@@ -161,6 +58,61 @@ function TableDemo() {
         location: "", status: ""
       },
     ]);
+
+    
+// Beginning of SimpleDialog code    
+  const labels = ['Number:', 'Name:', 'Status:'];
+
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(labels[1]);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  // const handleClose = (value) => {
+  //   setOpen(false);
+  //   setSelectedValue(value);
+  // };
+    
+function SimpleDialog(props) {
+  const { onClose, selectedValue, open } = props;
+
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  const handleListItemClick = (value) => {
+    onClose(value);
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Item Details</DialogTitle>
+      <List sx={{ pt: 0 }}>
+        {labels.map((label) => (
+          // <ListItem button onClick={() => handleListItemClick(email)} key={email}>
+            <ListItemText primary={label}/>
+          // </ListItem>
+        ))}
+
+        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+          <ListItemAvatar>
+            <Avatar sx={{ bgcolor: "#1787E0", color: "white" }}>
+              <DoneIcon />
+            </Avatar>
+          </ListItemAvatar>
+        </ListItem>
+      </List>
+    </Dialog>
+  );
+}
+
+SimpleDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired,
+};
 
     // Initial states
     const [open, setOpen] = React.useState(false);
@@ -206,6 +158,24 @@ function TableDemo() {
         setOpen(true);
     };
 
+    const handlePopUp = () => {
+      const [itemNumber, setItemNumber] = React.useState("");
+      const [itemName, setItemName] = React.useState("");
+      const [cost, setCost] = React.useState("");
+      const [currentValue, setCurrentValue] = React.useState("");
+      const [user, setUser] = React.useState("");
+      const [location, setLocation] = React.useState("");
+      const [status, setStatus] = React.useState("");
+
+      return (
+      <SimpleDialog
+      open={open}
+      onClose={handleClose} 
+      itemNumber={itemNumber}
+      setItemNumber={setItemNumber}
+      />
+      )
+    }
   
     // The handleInputChange handler can be set up to handle
     // many different inputs in the form, listen for changes 
@@ -239,6 +209,15 @@ function TableDemo() {
         setShowConfirm(false);
     };
 
+
+    // When a user clicks the eye icon next to
+    // an item, this function will run and show
+    // a pop-up with the item's details.
+    const showDetails = (i) => {
+
+    }
+    // - Richard wrote this ask me if you need help
+
   
   return ( // Return for the entire table
     <TableBody class="table-styling">
@@ -256,23 +235,19 @@ function TableDemo() {
       
       <Box>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {/* <div> Could probably delete this */}
+          <div>
                 <Button style={{
                   borderRadius: 4,
                   backgroundColor: "#1787E0",
                 }}
-                variant="contained" onClick={handleDialogOpen}>
+                variant="contained" onClick={handlePopUp}>
                   <p class="body-text">Add Item</p>
                 </Button>
-                <SimpleDialog
-                  dialogOpen={dialogOpen}
-                  handleDialogClose={handleDialogClose}
-                />
                 {/* <Button align="right" onClick={handleEdit}>
                   <CreateIcon />
                   EDIT
                 </Button> */}
-          {/* </div> */}
+          </div>
         </div>
         <TableRow align="center"> </TableRow>
   
@@ -326,7 +301,7 @@ function TableDemo() {
                     </Button>
                   </TableCell>
                   <TableCell> {/* View item details button */}
-                    <Button className="mr10"> {/* TODO: onClick, pop up a dialog with pre-populated data */}
+                    <Button className="mr10"> {/* TODO: onClick, pop up the dialog from SimpleDialogDemo.js */}
                     <VisibilityIcon />
                     </Button>
                   </TableCell>
