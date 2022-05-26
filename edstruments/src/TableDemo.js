@@ -7,6 +7,7 @@ import {
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import DoneIcon from "@material-ui/icons/Done";
+import CloseIcon from '@mui/icons-material/Close';
 import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
@@ -28,6 +29,14 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 
 import TextField from '@mui/material/TextField';
+
+/*
+Map statement that I deleted earlier.
+
+{rows.map((row, i) => {
+
+})}
+*/
 
 
 // Creating styles
@@ -53,7 +62,7 @@ function TableDemo() {
   /* Begin DIALOG code */
 
   // Dialog initial states
-  const [itemNumber, setItemNumber] = React.useState("");
+  const [itemID, setItemID] = React.useState("");
   const [itemName, setItemName] = React.useState("");
   const [cost, setCost] = React.useState("");
   const [currentValue, setCurrentValue] = React.useState("");
@@ -62,18 +71,15 @@ function TableDemo() {
   const [status, setStatus] = React.useState("");
 
   const labels = ['ID:', 'Name:', 'Cost:', 'Current Value:', 'User:', 'Location:', 'Status:'];
-  const states = [itemNumber, itemName, cost, currentValue, user, location, status];
-  const setters = [setItemNumber, setItemName, setCost, setCurrentValue, setUser, setLocation, setStatus];
+  const states = [itemID, itemName, cost, currentValue, user, location, status];
+  const setters = [setItemID, setItemName, setCost, setCurrentValue, setUser, setLocation, setStatus];
 
-  const bigArray = [labels, states, setters]
-
-  const handleNumberChange = (e) => {
-    setItemNumber(e.target.itemNumber);
-    console.log("a");
+  const handleIDChange = (e) => {
+    setItemID(e.target.itemID);
+    console.log(e.target.itemID);
   }
   const handleNameChange = (e) => {
     setItemName(e.target.itemName);
-    console.log("b");
   }
   const handleCostChange = (e) => {
     setCost(e.target.cost);
@@ -82,43 +88,55 @@ function TableDemo() {
     setCurrentValue(e.target.currentValue);
   }
   const handleUserChange = (e) => {
-    setUser(e.target.user);
+    setUser(e.target.value);
   }
   const handleLocationChange = (e) => {
-    setLocation(e.target.location);
+    setLocation(e.target.value);
   }
   const handleStatusChange = (e) => {
-    setStatus(e.target.status);
+    setStatus(e.target.value);
     console.log(e);
   }
 
-  const changers = [handleNumberChange, handleNameChange, handleCostChange, handleValueChange, handleUserChange, handleLocationChange, handleStatusChange];
+  const changers = [handleIDChange, handleNameChange, handleCostChange, handleValueChange, handleUserChange, handleLocationChange, handleStatusChange];
 
 
-  function SimpleDialog(props) {
+  function AddDialog(props) {
     const { handleDialogClose, dialogOpen } = props;
+
+    const [val, setVal] = React.useState("");
+
+    const handleValChange = e => {
+      console.log(e.target.value);
+      setVal(e.target.value);
+      rows[rows.length - 1].itemID = val;
+    }
 
     return (
       <Dialog onClose={handleDialogClose} open={dialogOpen}>
         <DialogTitle>Item Details</DialogTitle>
         <List sx={{ pt: 0 }}>
-          {labels.map((label, index) => (
+          {/* Deleted map statement */}
             <ListItem>
-              <ListItemText primary={label}/>
               <TextField
-                value={states[index]}
-                onChange={changers[index]}
+                value={val}
+                onChange={handleValChange}
                 id="outlined-password-input"
-                label="type information here"
-                autoComplete="current-password"
+                label="type here"
               />
             </ListItem>
-          ))}
           
-          <ListItem autoFocus button onClick={handleDialogClose}>
+          <ListItem autoFocus button onClick={handleDialogSave}>
           <ListItemAvatar>
             <Avatar sx={{ bgcolor: "#1787E0", color: "white" }}>
               <DoneIcon />
+            </Avatar>
+          </ListItemAvatar>
+        </ListItem>
+        <ListItem autoFocus button onClick={handleDialogClose}>
+          <ListItemAvatar>
+            <Avatar sx={{ bgcolor: "#F50000", color: "white" }}>
+              <CloseIcon />
             </Avatar>
           </ListItemAvatar>
         </ListItem>
@@ -127,7 +145,7 @@ function TableDemo() {
     );
   }
 
-  SimpleDialog.propTypes = {
+  AddDialog.propTypes = {
     handleDialogClose: PropTypes.func.isRequired,
     dialogOpen: PropTypes.bool.isRequired,
   };
@@ -135,13 +153,18 @@ function TableDemo() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
   const handleDialogOpen = () => {
+    handleAdd();
     setDialogOpen(true);
   };
 
   const handleDialogClose = () => {
-    handleAdd();
     setDialogOpen(false);
   };
+
+  const handleDialogSave = () => {
+    setRows(rows);
+    setDialogOpen(false);
+  }
 
   /* End DIALOG code */
 
@@ -155,7 +178,7 @@ function TableDemo() {
     // Defining a state named rows
     // which we can update by calling on setRows function
     const [rows, setRows] = useState([
-        { id: 1, itemNumber: "",
+        { id: 1, itemID: "",
         itemName: "", cost: "",
         currentValue: "", user: "",
         location: "", status: ""
@@ -181,13 +204,12 @@ function TableDemo() {
       setRows([
         ...rows,
         {
-          id: rows.length + 1, itemNumber: "",
+          id: rows.length + 1, itemID: "",
           itemName: "", cost: "",
           currentValue: "", user: "",
           location: "", status: ""
         },
       ]);
-      setEdit(true);
     };
   
     // Function to handle edit
@@ -264,7 +286,7 @@ function TableDemo() {
                 variant="contained" onClick={handleDialogOpen}>
                   <p class="body-text">Add Item</p>
                 </Button>
-                <SimpleDialog
+                <AddDialog
                   dialogOpen={dialogOpen}
                   handleDialogClose={handleDialogClose}
                 />
@@ -284,7 +306,7 @@ function TableDemo() {
         >
           <TableHead>
             <TableRow>
-              <TableCell>Item Number</TableCell>
+              <TableCell>Item ID</TableCell>
               <TableCell>Item Name</TableCell>
               <TableCell>Cost ($)</TableCell>
               <TableCell>Current Value ($)</TableCell>
@@ -300,7 +322,7 @@ function TableDemo() {
               return (
                 <TableRow>
                   <TableCell component="th" scope="row" align="center">
-                    {row.itemNumber}
+                    {row.itemID}
                   </TableCell>
                   <TableCell component="th" scope="row" align="center">
                     {row.itemName}
