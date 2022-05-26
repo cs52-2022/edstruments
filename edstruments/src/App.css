@@ -43,7 +43,7 @@
 .catalog {
   font-family: Roboto;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 28px;
   margin: 10px;
   text-align: left;
   color: #42505C;
@@ -57,8 +57,8 @@
   font-size: 15px;
   line-height: 14px;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .top-navbar {
@@ -85,15 +85,17 @@
 }
 
 .district {
-  font-size: 11pt;
+  font-size: 0.95rem;
   padding-bottom: 0;
   margin-bottom: 0;
+  margin-top: 0.1rem;
 }
 
 .school {
   font-weight: bold;
-  font-size: 10pt;
+  font-size: 0.9rem;
   margin-bottom: 0;
+  margin-top: 0.1rem;
 }
 
 .vertical-line {
@@ -112,6 +114,7 @@
   line-height: 50px;
   text-align: center;
   font-family: Roboto;
+  font-weight: 550;
 }
 
 .table-styling {
