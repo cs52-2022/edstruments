@@ -13,7 +13,7 @@ function App() {
 
     <div className="App">
       {/* <Navbar className="navbar" bg="light" expand="lg"> */}
-      <Navbar className="color-nav" variant="light">
+      <Navbar className="top-navbar" variant="light">
         <Container>
           <a href="https://edstruments.com/">
             <img class="edstruments-logo" src={edstruments_logo} href="#home"></img>
@@ -28,14 +28,6 @@ function App() {
               <Nav.Link href="#assets">Assets</Nav.Link>
               <Nav.Link href="#personal">Personal</Nav.Link>
               <Nav.Link href="#schools">Schools</Nav.Link>
-              {/* Code for implmenting a dropdown menu, if we need it*/}
-              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-              </NavDropdown> */}
             </Nav>
             <div className="school-info">
               <p class="district">Metro City Unified School District</p>
@@ -48,7 +40,6 @@ function App() {
       </Navbar>
       
       <TableDemo />
-      <SimpleDialogDemo />
         
     </div>
   );

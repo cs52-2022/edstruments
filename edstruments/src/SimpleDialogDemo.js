@@ -15,10 +15,10 @@ import Typography from '@mui/material/Typography';
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import { blue } from '@mui/material/colors';
 
-const emails = ['Name:', 'ID:', 'Status:'];
+const labels = ['ID:', 'Name:', 'Cost:', 'Current Value:', 'User:', 'Location:', 'Status:'];
 
 function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
+  const { onClose, selectedValue, dialogOpen } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -29,13 +29,11 @@ function SimpleDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={dialogOpen}>
       <DialogTitle>Item Details</DialogTitle>
       <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
-          // <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-            <ListItemText primary={email}/>
-          // </ListItem>
+        {labels.map((label) => (
+          <ListItemText primary={label}/>
         ))}
 
         <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
@@ -52,35 +50,31 @@ function SimpleDialog(props) {
 
 SimpleDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+  dialogOpen: PropTypes.bool.isRequired,
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+export default function SimpleDialogDemo( props ) {
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(labels[1]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
   };
 
   const handleClose = (value) => {
-    setOpen(false);
+    setDialogOpen(false);
     setSelectedValue(value);
   };
 
   return (
     <div>
-      {/* <Typography variant="subtitle1" component="div">
-        Selected: {selectedValue}
-      </Typography>
-      <br /> */}
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleDialogOpen}>
         <p class="body-text">Add Item with Dialog</p>
       </Button>
       <SimpleDialog
         selectedValue={selectedValue}
-        open={open}
+        dialogOpen={dialogOpen}
         onClose={handleClose}
       />
     </div>
