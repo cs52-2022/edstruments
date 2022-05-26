@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
 .App {
   text-align: center;
   /* background-color: #F2F2F2;  */
@@ -39,7 +41,7 @@
 }
 
 .catalog {
-  font: Roboto;
+  font-family: Roboto;
   font-weight: 700;
   font-size: 18px;
   margin: 10px;
@@ -48,18 +50,22 @@
 }
 
 .body-text {
-  font: Roboto;
+  font-family: Roboto;
   color: white;
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
   line-height: 14px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .top-navbar {
   background-color: white;
   border-bottom: 1px solid black;
   height: 4.188rem;
+  font-family: Roboto;
 }
 
 .edstruments-logo {
@@ -75,6 +81,7 @@
   padding-right: 5px;
   border-right: 1px solid rgb(192, 192, 192);
   height: 3.2rem;
+  font-family: Roboto;
 }
 
 .district {
@@ -104,17 +111,15 @@
   cursor: pointer;
   line-height: 50px;
   text-align: center;
+  font-family: Roboto;
 }
-
-/* .white-background {
-  background-color: white;
-} */
 
 .table-styling {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: Roboto;
 }
 
 .selected-text {
