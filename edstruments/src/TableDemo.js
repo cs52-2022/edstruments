@@ -67,15 +67,12 @@ function TableDemo() {
   // Dialog initial states
   
 
-  const labels = ['ID:', 'Name:', 'Cost:', 'Current Value:', 'User:', 'Location:', 'Status:'];
-
+  
   
 
 
   function AddDialog(props) {
     const { handleDialogClose, dialogOpen } = props;
-
-    const [val, setVal] = React.useState("");
 
     const [itemID, setItemID] = React.useState("");
     const [itemName, setItemName] = React.useState("");
@@ -85,16 +82,11 @@ function TableDemo() {
     const [location, setLocation] = React.useState("");
     const [status, setStatus] = React.useState("");
 
-    const handleValChange = (e) => {
-      setVal(e.target.value);
-      rows[rows.length - 1].itemID = itemID;
-    }
-
-    const handleIDChange = (e) => {
+    const handleItemIDChange = (e) => {
       setItemID(e.target.value);
       rows[rows.length - 1].itemID = itemID;
     }
-    const handleNameChange = (e) => {
+    const handleItemNameChange = (e) => {
       setItemName(e.target.value);
       rows[rows.length - 1].itemName = itemName;
     }
@@ -124,65 +116,90 @@ function TableDemo() {
         <DialogTitle>Item Details</DialogTitle>
         <List sx={{ pt: 0 }}>
           {/* Deleted map statement */}
+          <ListItem>
             <ListItem>
               <TextField
                 value={itemID}
-                onChange={handleIDChange}
+                onChange={handleItemIDChange}
                 id="outlined-password-input"
-                label="type here"
+                label="Item ID"
               />
+            </ListItem>
+            <ListItem>
               <TextField
                 value={itemName}
-                onChange={handleNameChange}
+                onChange={handleItemNameChange}
                 id="outlined-password-input"
-                label="type here"
+                label="Item Name"
               />
+            </ListItem>
+          </ListItem>
+          <ListItem>
+            <ListItem>
               <TextField
                 value={cost}
                 onChange={handleCostChange}
                 id="outlined-password-input"
-                label="type here"
-              />
-              <TextField
-                value={val}
-                onChange={handleValChange}
-                id="outlined-password-input"
-                label="type here"
-              />
-              <TextField
-                value={val}
-                onChange={handleValChange}
-                id="outlined-password-input"
-                label="type here"
-              />
-              <TextField
-                value={val}
-                onChange={handleValChange}
-                id="outlined-password-input"
-                label="type here"
-              />
-              <TextField
-                value={val}
-                onChange={handleValChange}
-                id="outlined-password-input"
-                label="type here"
+                label="Cost"
               />
             </ListItem>
+            <ListItem>
+              <TextField
+                value={currentValue}
+                onChange={handleCurrentValueChange}
+                id="outlined-password-input"
+                label="Current Value"
+              />
+            </ListItem>
+          </ListItem>
+          <ListItem>
+            <ListItem>
+              <TextField
+                value={user}
+                onChange={handleUserChange}
+                id="outlined-password-input"
+                label="User"
+              />
+            </ListItem>
+            <ListItem>
+              <TextField
+                value={location}
+                onChange={handleLocationChange}
+                id="outlined-password-input"
+                label="Location"
+              />
+            </ListItem>
+          </ListItem>
+          <ListItem>
+            <ListItem>
+              <TextField
+                value={status}
+                onChange={handleStatusChange}
+                id="outlined-password-input"
+                label="Status"
+              />
+            </ListItem>
+          </ListItem>
+
+            <ListItem>
+              <ListItem autoFocus button onClick={handleDialogSave}>
+                <ListItemAvatar>
+                  <Avatar sx={{ bgcolor: "#1787E0", color: "white" }}>
+                    <DoneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+              </ListItem>
+              
+              <ListItem autoFocus button onClick={handleDialogClose}>
+                <ListItemAvatar>
+                  <Avatar sx={{ bgcolor: "#F50000", color: "white" }}>
+                    <CloseIcon />
+                  </Avatar>
+                </ListItemAvatar>
+              </ListItem>
+            </ListItem>
+
           
-          <ListItem autoFocus button onClick={handleDialogSave}>
-          <ListItemAvatar>
-            <Avatar sx={{ bgcolor: "#1787E0", color: "white" }}>
-              <DoneIcon />
-            </Avatar>
-          </ListItemAvatar>
-        </ListItem>
-        <ListItem autoFocus button onClick={handleDialogClose}>
-          <ListItemAvatar>
-            <Avatar sx={{ bgcolor: "#F50000", color: "white" }}>
-              <CloseIcon />
-            </Avatar>
-          </ListItemAvatar>
-        </ListItem>
         </List>
       </Dialog>
     );
@@ -204,6 +221,11 @@ function TableDemo() {
     setDialogOpen(false);
   };
 
+  const handleDialogCancel = () => {
+    handleRemoveClick(rows.length - 1);
+    handleDialogClose();
+  }
+
   const handleDialogSave = () => {
     setRows(rows);
     setDialogOpen(false);
@@ -220,13 +242,7 @@ function TableDemo() {
   
     // Defining a state named rows
     // which we can update by calling on setRows function
-    const [rows, setRows] = useState([
-        { id: 1, itemID: "",
-        itemName: "", cost: "",
-        currentValue: "", user: "",
-        location: "", status: ""
-      },
-    ]);
+    const [rows, setRows] = useState([]);
 
     // Initial states
     const [open, setOpen] = React.useState(false);
@@ -294,8 +310,7 @@ function TableDemo() {
         const list = [...rows];
         list.splice(i, 1);
         setRows(list);
-        setShowConfirm(false); // Richard: I added this so deletions also show a confirmation snackbar
-        setOpen(true);
+        setShowConfirm(false);
     };
   
     // Handle the case of delete confirmation 
@@ -331,7 +346,7 @@ function TableDemo() {
                 </Button>
                 <AddDialog
                   dialogOpen={dialogOpen}
-                  handleDialogClose={handleDialogClose}
+                  handleDialogClose={handleDialogCancel}
                 />
                 {/* <Button align="right" onClick={handleEdit}>
                   <CreateIcon />
@@ -390,6 +405,35 @@ function TableDemo() {
                     <DeleteOutlineIcon />
                     </Button>
                   </TableCell>
+                  <Dialog
+                    open={showConfirm}
+                    onClose={handleNo}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                    >
+                    <DialogTitle id="alert-dialog-title">
+                      {"Confirm Delete"}
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to delete this item?
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                      onClick={() => handleRemoveClick(i)}
+                      color="primary"
+                      autoFocus>
+                        Yes
+                      </Button>
+                      <Button
+                      onClick={handleNo}
+                      color="primary"
+                      autoFocus>
+                        No
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                   <TableCell> {/* View item details button */}
                     <Button className="mr10"> {/* TODO: onClick, pop up a dialog with pre-populated data */}
                     <VisibilityIcon />
