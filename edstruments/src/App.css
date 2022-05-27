@@ -128,3 +128,7 @@
 .selected-text {
   color: #1787E0;
 }
+
+a.nav-link:hover {
+    color: #1787E0 !important;
+}
