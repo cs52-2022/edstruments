@@ -131,4 +131,6 @@
 
 a.nav-link:hover {
     color: #1787E0 !important;
+    font-weight: 700;
+    text-decoration: underline;
 }
