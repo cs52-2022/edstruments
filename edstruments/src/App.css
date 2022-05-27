@@ -133,4 +133,9 @@ a.nav-link:hover {
     color: #1787E0 !important;
     font-weight: 700;
     text-decoration: underline;
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
+  color: #1787E0 !important;
+  font-weight: 700;
+
 }
