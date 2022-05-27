@@ -125,6 +125,11 @@
   font-family: Roboto;
 }
 
-.selected-text {
-  color: #1787E0;
+a.nav-link:hover {
+  color: #1787E0 !important;
+}
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
+  color: #1787E0 !important;
+  font-weight: 700;
 }
