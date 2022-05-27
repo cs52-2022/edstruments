@@ -15,11 +15,11 @@ function App() {
       {/* <Navbar className="navbar" bg="light" expand="lg"> */}
       <Navbar className="top-navbar" variant="light">
         <Container>
-          <a href="https://edstruments.com/">
-            <img class="edstruments-logo" src={edstruments_logo} href="#home"></img>
-          </a>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            <a href="https://edstruments.com/">
+              <img class="edstruments-logo" src={edstruments_logo} href="#home"></img>
+            </a>
             <Nav className="me-auto">
               <Nav.Link href="#dashboard">Dashboard</Nav.Link>
               <Nav.Link href="#resources">Resources</Nav.Link>
@@ -33,8 +33,8 @@ function App() {
               <p class="district">Metro City Unified School District</p>
               <p class="school">John F. Kennedy High School</p>
             </div>
-            <div className="vertical-line"></div>
             <div className="user-icon-circle">AJ</div>
+            <div className="vertical-line"></div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
