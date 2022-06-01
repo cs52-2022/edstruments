@@ -66,11 +66,6 @@ function TableDemo() {
 
   // Dialog initial states
   
-
-  
-  
-
-
   function AddDialog(props) {
     const { handleDialogClose, dialogOpen } = props;
 
@@ -84,31 +79,31 @@ function TableDemo() {
 
     const handleItemIDChange = (e) => {
       setItemID(e.target.value);
-      rows[rows.length - 1].itemID = itemID;
+      rows[rows.length - 1].itemID = e.target.value;
     }
     const handleItemNameChange = (e) => {
       setItemName(e.target.value);
-      rows[rows.length - 1].itemName = itemName;
+      rows[rows.length - 1].itemName = e.target.value;
     }
     const handleCostChange = (e) => {
       setCost(e.target.value);
-      rows[rows.length - 1].cost = cost;
+      rows[rows.length - 1].cost = e.target.value;
     }
     const handleCurrentValueChange = (e) => {
       setCurrentValue(e.target.value);
-      rows[rows.length - 1].currentValue = currentValue;
+      rows[rows.length - 1].currentValue = e.target.value;
     }
     const handleUserChange = (e) => {
       setUser(e.target.value);
-      rows[rows.length - 1].user = user;
+      rows[rows.length - 1].user = e.target.value;
     }
     const handleLocationChange = (e) => {
       setLocation(e.target.value);
-      rows[rows.length - 1].location = location;
+      rows[rows.length - 1].location = e.target.value;
     }
     const handleStatusChange = (e) => {
       setStatus(e.target.value);
-      rows[rows.length - 1].status = status;
+      rows[rows.length - 1].status = e.target.value;
     }
 
     return (
